@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Upload de Imagem</title>
+</head>
+<body>
+
+    <h1>Upload de Imagem</h1>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="image">Escolha uma imagem:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+        <br>
+
+        <!-- Adicione outros campos do formulário conforme necessário -->
+        
+        <button type="button" onclick="uploadImage()">Enviar</button>
+    </form>
+
+    <script>
+      
+        async function uploadImage() {
+    const formData = new FormData();
+    const fileInput = document.getElementById('image');
+    const file = fileInput.files[0];
+
+    formData.append('image', file);
+
+    try {
+        const response = await fetch('/create_menu', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erro na solicitação: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Erro ao enviar imagem:', error);
+    }
+}
+
+    </script>
+
+</body>
+</html>
