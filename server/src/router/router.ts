@@ -11,15 +11,15 @@ export const router = Router();
 router.get("/", (req, res) => {
   res.status(200).send("🔥http server running");
 });
-router.post("/create_point", upload.array("file"),   CreateNewPoint)
+router.post("/create_point", upload.array("files"),   CreateNewPoint)
 // router.post("/create_menu_product", upload.single("file"), CreateMenuProduct);
 
 // router.put("/report", ReportMenu) -> pode usar..
 
-// router.get("/tmp/uploads/:filename", (req, res) => {
-//   const filename = req.params.filename;
-//   res.sendFile(path.join(__dirname, "..", "..", "tmp", "uploads", filename));
-// });
+router.get("/tmp/points/:filename", (req, res) => {
+  const filename = req.params.filename;
+  res.sendFile(path.join(__dirname, "..", "..", "tmp", "points", filename));
+});
 
 //user
 router.post("/create_user", CreateUser);
