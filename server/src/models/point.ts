@@ -5,6 +5,8 @@ interface Ipoint extends Document {
   admin_id: [];
   address: string;
   city: string;
+  name_point: string;
+
   spam: number;
 }
 
@@ -14,6 +16,8 @@ export const CreateNewSchema = new Schema<Ipoint>({
   admin_id: { type: [] },
   address: {type: String},
   city: {type: String},
+  name_point: {type: String},
+
 });
 
-export const UserModel = model("points", CreateNewSchema);
+export const PointModel = model("points", CreateNewSchema);
