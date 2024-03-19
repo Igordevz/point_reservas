@@ -8,10 +8,9 @@ interface Iuser extends Document {
   verification_twofactores: boolean; // verificação de dois fatores
   codding_create_user: number; // codigo de verificação
   photo_user: string;
-  photo_point: [];
+  id_points: [];
   chat: []; //insert Ids to clients
 
-  spam: number;
 }
 
 export const CreateNewSchema = new Schema<Iuser>({
@@ -23,8 +22,7 @@ export const CreateNewSchema = new Schema<Iuser>({
 
   verification_twofactores: { type: Boolean },
   codding_create_user: { type: Number },
-  spam: { type: Number },
-  photo_point: { type: [] },
+  id_points: { type: [] },
   chat: { type: [] },
 });
 
