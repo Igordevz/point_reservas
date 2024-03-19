@@ -1,12 +1,12 @@
 import { Document, Schema, model } from "mongoose";
 
-interface Iuser extends Document {
+interface Ipoint extends Document {
   photo_point: [];
   admin_id: [];
   spam: number;
 }
 
-export const CreateNewSchema = new Schema<Iuser>({
+export const CreateNewSchema = new Schema<Ipoint>({
   spam: { type: Number },
   photo_point: { type: [] },
   admin_id: { type: [] },
