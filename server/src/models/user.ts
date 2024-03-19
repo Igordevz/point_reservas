@@ -6,7 +6,7 @@ interface Iuser extends Document {
   email: string;
   recovery: string; // caso esqueceu a senha
   verification_twofactores: boolean; // verificação de dois fatores
-  codding_create_user: number; // codigo de verificação
+  codding_twofactores: number; // codigo de verificação
   photo_user: string;
   id_points: [];
   chat: []; //insert Ids to clients
@@ -21,7 +21,7 @@ export const CreateNewSchema = new Schema<Iuser>({
   photo_user: { type: String },
 
   verification_twofactores: { type: Boolean },
-  codding_create_user: { type: Number },
+  codding_twofactores: { type: Number },
   id_points: { type: [] },
   chat: { type: [] },
 });

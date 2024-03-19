@@ -28,10 +28,9 @@ export default async function CreateUser(req: Request, res:Response) {
     const dataUser = new UserModel({
         name,
         email,
-        isProducer: false,
         password: passwordHash, 
         verification_twofactores: false,
-        codding_create_user: numberAleatory,
+        codding_twofactores: numberAleatory,
     })
 
     const emailExist = await UserModel.findOne({ email: email })

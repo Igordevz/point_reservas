@@ -10,7 +10,7 @@ export default async function ValidatorTokenAcount(req:Request, res:Response ){
     return res.status(401).json({msg: "Insira um token"})
   }
 
-  const tokenValid = await UserModel.updateOne({codding_create_user: token}, { 
+  const tokenValid = await UserModel.updateOne({codding_twofactores: token}, { 
     verification_twofactores: true
   })
 
