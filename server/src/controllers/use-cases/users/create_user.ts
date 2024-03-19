@@ -46,7 +46,7 @@ export default async function CreateUser(req: Request, res:Response) {
             from: "Food-delivery",
             to: email,
             subject: "Autenticação de dois fatores",
-            text:`Ative sua conta inserindo este código:  ${numberAleatory}` ,
+            text:`Ative sua conta inserindo este código:  ${numberAleatory} ` , // create two factores last
           }) 
     }
     return res.status(201).json(createUser)
