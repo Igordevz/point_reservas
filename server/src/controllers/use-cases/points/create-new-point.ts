@@ -7,7 +7,6 @@ export default async function CreateNewPoint(req: Request, res: Response){
   const { address, city, admin_id, name_point, state  } = req.body
 
   const pictures:any = req.files
-  console.log("Arquivo recebido:", pictures);
 
   const imgs_photo = pictures.map((file_name:any) => file_name?.path)
 

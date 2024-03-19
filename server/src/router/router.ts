@@ -7,11 +7,13 @@ import NotificationRecoveryPassword from "../controllers/use-cases/users/notific
 import RecoveryPassword from "../controllers/use-cases/users/recovery-password";
 import ValidatorTokenAcount from "../controllers/use-cases/users/validator-token-active";
 import CreateNewPoint from "../controllers/use-cases/points/create-new-point";
+import RemovePoint from "../controllers/use-cases/points/remove-point";
 export const router = Router();
 router.get("/", (req, res) => {
   res.status(200).send("🔥http server running");
 });
 router.post("/create_point", upload.array("files"),   CreateNewPoint)
+router.delete("/remove_point", RemovePoint)
 // router.post("/create_menu_product", upload.single("file"), CreateMenuProduct);
 
 // router.put("/report", ReportMenu) -> pode usar..
