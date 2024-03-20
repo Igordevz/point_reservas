@@ -42,7 +42,7 @@ export default async function CreateUser(req: Request, res:Response) {
     const createUser = await UserModel.create(dataUser) 
     if(createUser){
         await transport.sendMail({
-            from: "Food-delivery",
+            from: "Point-Reservs",
             to: email,
             subject: "Autenticação de dois fatores",
             text:`Ative sua conta inserindo este código:  ${numberAleatory} ` , // create two factores last

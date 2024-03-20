@@ -18,7 +18,7 @@ export default async function ValidatorTokenAcount(req:Request, res:Response ){
   if(tokenValid.modifiedCount >= 1){
     return res.status(200).json({ msg: "Email ativado com sucesso!" })
   } else { 
-    return res.status(200).json({msg: "Não foi possivel ativar este Email"})
+    return res.status(401).json({msg: "Este código esta inválido"})
   }
 
 }
