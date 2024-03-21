@@ -42,7 +42,7 @@ export default function LoginForm() {
   }
 
   async function Login(data: IData) {
-    setLoading(true)
+    setLoading(true);
     try {
       const fecthApi = await instance.post("/login", {
         email: data?.email,
@@ -51,16 +51,18 @@ export default function LoginForm() {
       toast({
         title: "Login Realizado Com Sucesso",
       });
-      const dataSave = localStorage.setItem("@auth-id", JSON.stringify(fecthApi?.data))
+      const dataSave = localStorage.setItem(
+        "@auth-id",
+        JSON.stringify(fecthApi?.data)
+      );
       router.push("/");
     } catch (error: any) {
       toast({
         title: "Houve um problema no seu login",
         description: error?.response?.data?.msg,
       });
-    }
-    finally {
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -89,13 +91,20 @@ export default function LoginForm() {
           {errors?.password?.message}
         </span>
       </div>
-      
-      <Button type="submit" className="w-full flex flex-row gap-4">
-      
-        {loading ? <BarLoader  width={"90%"} height={2} color="black"/> :  "Entrar"}
-      </Button>
-      <p className="text-[13px] text-center">Se você não tem usuário cadastrado  <a href="/sing-in" className="underline">clique aqui</a></p>
 
+      <Button type="submit" className="w-full flex flex-row gap-4">
+        {loading ? (
+          <BarLoader width={"90%"} height={2} color="black" />
+        ) : (
+          "Entrar"
+        )}
+      </Button>
+      <p className="text-[13px] text-center">
+        Se você não tem usuário cadastrado{" "}
+        <a href="/sing-in" className="underline">
+          clique aqui
+        </a>
+      </p>
     </form>
   );
 }

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation'; // Importe corretamente o useRouter
-import { ReactNode, createContext, useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useRouter } from "next/navigation"; // Importe corretamente o useRouter
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 export const AuthContextApi = createContext({});
 
 interface Ichildren {
@@ -15,24 +15,20 @@ export default function AuthProvider({ children }: Ichildren) {
   const [user, setUser] = useState();
   const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
-    const data = localStorage.getItem('@auth-id');
+    const data = localStorage.getItem("@auth-id");
     if (data) {
       setIsLogin(true);
-      if(pathName === "/login" || pathName == "/sing-in"){
-        router.push("/")
+      if (pathName === "/login" || pathName == "/sing-in") {
+        router.push("/");
       }
     } else {
-      if (pathName === '/') {
-        router.push('/sing-in');
+      if (pathName === "/") {
+        router.push("/sing-in");
       }
     }
-
-    console.log(data);
   }, []);
 
   return (
-    <AuthContextApi.Provider value={{}}>
-      {children}
-    </AuthContextApi.Provider>
+    <AuthContextApi.Provider value={{}}>{children}</AuthContextApi.Provider>
   );
 }
