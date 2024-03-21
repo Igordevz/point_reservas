@@ -47,7 +47,7 @@ export default function FormSingIn() {
   }
 
   async function SingIn(data: IData) {
-    setLoading(true)
+    setLoading(true);
     try {
       const fecthApi = await instance.post("/create_user", {
         email: data?.email,
@@ -58,16 +58,18 @@ export default function FormSingIn() {
         title: "Cadastrado com sucesso",
         description: "Seu cadastro em nosso sistema foi realizado com sucesso",
       });
-      const dataSave = localStorage.setItem("@auth-id", JSON.stringify(fecthApi?.data))
+      const dataSave = localStorage.setItem(
+        "@auth-id",
+        JSON.stringify(fecthApi?.data)
+      );
       router.push("/sing-in/two-factors");
     } catch (error: any) {
       toast({
         title: "Houve um problema no sua criação",
         description: error?.response?.data?.msg,
       });
-    }
-    finally {
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   }
   return (
@@ -108,10 +110,18 @@ export default function FormSingIn() {
         </span>
       </div>
       <Button type="submit" className="w-full flex flex-row gap-4">
-      
-        {loading ? <BarLoader  width={"90%"} height={2} color="black"/> :  "Realizar cadastro"}
+        {loading ? (
+          <BarLoader width={"90%"} height={2} color="black" />
+        ) : (
+          "Realizar cadastro"
+        )}
       </Button>
-        <p className="text-[13px] text-center">Se você já tem usuário cadastrado  <a href="/login" className="underline">clique aqui</a></p>
+      <p className="text-[13px] text-center">
+        Se você já tem usuário cadastrado{" "}
+        <a href="/login" className="underline">
+          clique aqui
+        </a>
+      </p>
     </form>
   );
 }
