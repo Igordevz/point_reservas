@@ -18,11 +18,15 @@ export default function AuthProvider({ children }: Ichildren) {
     const data = localStorage.getItem('@auth-id');
     if (data) {
       setIsLogin(true);
+      if(pathName === "/login" || pathName == "/sing-in"){
+        router.push("/")
+      }
     } else {
       if (pathName === '/') {
         router.push('/sing-in');
       }
     }
+
     console.log(data);
   }, []);
 
