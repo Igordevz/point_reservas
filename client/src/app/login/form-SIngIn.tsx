@@ -10,7 +10,7 @@ import { instance } from "../api/api";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import BarLoader from "react-spinners/BarLoader";
-export default function FormSingIn() {
+export default function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
@@ -20,10 +20,6 @@ export default function FormSingIn() {
       .string()
       .nonempty("Preencha o Email")
       .email("Insira o Email válido."),
-    name: z
-      .string()
-      .nonempty("Preencha seu Nome")
-      .min(5, "Preencha seu nome completo."),
     password: z
       .string()
       .nonempty("Preencha sua Senha")
@@ -42,24 +38,21 @@ export default function FormSingIn() {
 
   interface IData {
     email: string;
-    name: string;
     password: string;
   }
 
-  async function SingIn(data: IData) {
+  async function Login(data: IData) {
     setLoading(true)
     try {
-      const fecthApi = await instance.post("/create_user", {
+      const fecthApi = await instance.post("/login", {
         email: data?.email,
-        name: data?.name,
         password: data?.password,
       });
       toast({
-        title: "Cadastrado com sucesso",
-        description: "Seu cadastro em nosso sistema foi realizado com sucesso",
+        title: "Login Realizado Com Sucesso",
       });
       const dataSave = localStorage.setItem("@auth-id", JSON.stringify(fecthApi?.data))
-      router.push("/sing-in/two-factors");
+      router.push("/");
     } catch (error: any) {
       toast({
         title: "Houve um error",
@@ -71,20 +64,9 @@ export default function FormSingIn() {
     }
   }
   return (
-    <form onSubmit={handleSubmit(SingIn)} className="space-y-3">
+    <form onSubmit={handleSubmit(Login)} className="space-y-3">
       <div className="space-y-1">
-        <Label htmlFor="name">Informe seu nome completo.</Label>
-        <Input
-          placeholder="Ex: Igor Dantas Pereira"
-          id="name"
-          {...register("name")}
-        />
-        <span className="text-red-500 text-[12px]">
-          {errors?.name?.message}
-        </span>
-      </div>
-      <div className="space-y-1">
-        <Label htmlFor="email">Informe seu email.</Label>
+        <Label htmlFor="email">Seu email.</Label>
         <Input
           placeholder="Ex: igordantas133@gmail.com"
           id="email"
@@ -96,7 +78,7 @@ export default function FormSingIn() {
       </div>
 
       <div className="space-y-1">
-        <Label htmlFor="password">Informe sua senha</Label>
+        <Label htmlFor="password">Sua senha</Label>
         <Input
           placeholder="Ex: ********"
           id="password"
@@ -110,7 +92,7 @@ export default function FormSingIn() {
       
       <Button type="submit" className="w-full flex flex-row gap-4">
       
-        {loading ? <BarLoader  width={"90%"} height={2} color="black"/> :  "Realizar cadastro"}
+        {loading ? <BarLoader  width={"90%"} height={2} color="black"/> :  "Entrar"}
       </Button>
     </form>
   );
