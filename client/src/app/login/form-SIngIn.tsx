@@ -55,7 +55,7 @@ export default function LoginForm() {
       router.push("/");
     } catch (error: any) {
       toast({
-        title: "Houve um error",
+        title: "Houve um problema no seu login",
         description: error?.response?.data?.msg,
       });
     }
@@ -94,6 +94,8 @@ export default function LoginForm() {
       
         {loading ? <BarLoader  width={"90%"} height={2} color="black"/> :  "Entrar"}
       </Button>
+      <p className="text-[13px] text-center">Se você não tem usuário cadastrado  <a href="/sing-in" className="underline">clique aqui</a></p>
+
     </form>
   );
 }

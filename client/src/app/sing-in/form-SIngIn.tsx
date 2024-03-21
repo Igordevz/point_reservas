@@ -62,7 +62,7 @@ export default function FormSingIn() {
       router.push("/sing-in/two-factors");
     } catch (error: any) {
       toast({
-        title: "Houve um error",
+        title: "Houve um problema no sua criação",
         description: error?.response?.data?.msg,
       });
     }
@@ -107,11 +107,11 @@ export default function FormSingIn() {
           {errors?.password?.message}
         </span>
       </div>
-      
       <Button type="submit" className="w-full flex flex-row gap-4">
       
         {loading ? <BarLoader  width={"90%"} height={2} color="black"/> :  "Realizar cadastro"}
       </Button>
+        <p className="text-[13px] text-center">Se você já tem usuário cadastrado  <a href="/login" className="underline">clique aqui</a></p>
     </form>
   );
 }
