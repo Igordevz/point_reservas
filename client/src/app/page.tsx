@@ -3,8 +3,11 @@ import Image from "next/image";
 export default  function Home() {
 
   return (
-   <main>
-    hello word
-   </main>
+   <div className="w-full h-screen flex items-center justify-center flex-row">
+    <aside>
+          // create aside
+    </aside>
+
+   </div>
   );
 }
