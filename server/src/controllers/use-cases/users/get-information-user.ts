@@ -13,5 +13,8 @@ export default async function GetInformationUser(req:Request, res: Response){
   if(!usersFind){
     res.status(401).json({msg: "Faça login novamente para obter acesso"})
   }
-  return res.status(200).json(usersFind);
+  else {
+
+    return res.status(200).json(usersFind);
+  }
 }

@@ -28,7 +28,7 @@ export default async function CreateUser(req: Request, res:Response) {
     const dataUser = new UserModel({
         name,
         email,
-        access_jwt: uuidv4(), // Use uuidv4() para gerar um UUID
+        access_jwt: uuidv4(), 
         password: passwordHash, 
         verification_twofactores: false,
         codding_twofactores: numberAleatory,
