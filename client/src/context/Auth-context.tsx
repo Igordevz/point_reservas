@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import Loading from "./loading";
 import { instance } from "@/app/api/api";
 import { toast } from "@/components/ui/use-toast";
+import Cookies from 'js-cookie';
+
 export const AuthContextApi = createContext({});
 
 interface Ichildren {
@@ -21,11 +23,8 @@ export default function AuthProvider({ children }: Ichildren) {
 
   useEffect(() => {
     setIsLoading(true);
-
-    const data: any = localStorage.getItem("@auth-id");
+    const token = Cookies.get('@auth-id');
     async function LoginUser() {
-      const modifieldData = JSON.parse(data);
-      const token = modifieldData;
       try {
         const req: any = await instance.post("/get-user", {
           token
@@ -40,7 +39,7 @@ export default function AuthProvider({ children }: Ichildren) {
       }
     }
 
-    if (data) {
+    if (token) {
       LoginUser();
       setIsLogin(true);
       if (pathName === "/login" || pathName == "/sing-in") {

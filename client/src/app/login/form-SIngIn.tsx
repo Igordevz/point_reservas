@@ -5,6 +5,8 @@ import { Label } from "@/components/ui/label";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Cookies from 'js-cookie';
+
 import { useToast } from "@/components/ui/use-toast";
 import { instance } from "../api/api";
 import { useRouter } from "next/navigation";
@@ -51,10 +53,7 @@ export default function LoginForm() {
       toast({
         title: "Login Realizado Com Sucesso",
       });
-      const dataSave = localStorage.setItem(
-        "@auth-id",
-        JSON.stringify(fecthApi?.data.access_jwt)
-      );
+      Cookies.set('@auth-id', fecthApi?.data.access_jwt);
       router.push("/");
     } catch (error: any) {
       toast({
