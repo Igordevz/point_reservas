@@ -57,7 +57,7 @@ export default function LoginForm() {
       const expires = new Date();
       expires.setDate(expires.getDate() + expirationTimeInDays);
       Cookies.set("@auth-id", fecthApi?.data.access_jwt, { expires });
-      router.push("/");
+      location.reload();
     } catch (error: any) {
       toast({
         title: "Houve um problema no seu login",
