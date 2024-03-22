@@ -24,13 +24,13 @@ export default function AuthProvider({ children }: Ichildren) {
   useEffect(() => {
     setIsLoading(true);
     const token = Cookies.get('@auth-id');
-    async function LoginUser() {
+    async function GetInformationUser() {
       try {
         const req: any = await instance.post("/get-user", {
           token
         });
 
-        setUser(req);
+        setUser(req?.data);
       } catch (error) {
         Cookies.remove('@auth-id');
         location.reload();
@@ -42,7 +42,7 @@ export default function AuthProvider({ children }: Ichildren) {
     }
 
     if(token) {
-      LoginUser();
+      GetInformationUser();
       setIsLogin(true);
       if (pathName === "/login" || pathName == "/sing-in") {
         router.push("/");

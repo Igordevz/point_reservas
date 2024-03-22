@@ -13,7 +13,7 @@ export default function AsideBar() {
         <div>
           <Avatar>
             <AvatarImage src="https://github.com/igordevz.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>{user?.name}</AvatarFallback>
           </Avatar>
           <h1>{}</h1>
         </div>
