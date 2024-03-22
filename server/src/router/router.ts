@@ -8,6 +8,7 @@ import RecoveryPassword from "../controllers/use-cases/users/recovery-password";
 import ValidatorTokenAcount from "../controllers/use-cases/users/validator-token-active";
 import CreateNewPoint from "../controllers/use-cases/points/create-new-point";
 import RemovePoint from "../controllers/use-cases/points/remove-point";
+import GetInformationUser from "../controllers/use-cases/users/get-information-user";
 export const router = Router();
 router.get("/", (req, res) => {
   res.status(200).send("🔥http server running");
@@ -26,6 +27,7 @@ router.get("/tmp/points/:filename", (req, res) => {
 //user
 router.post("/create_user", CreateUser);
 router.post("/login", LoginUser);
+router.post("/get-user", GetInformationUser)
 router.put("/notification_recovery", NotificationRecoveryPassword);
 router.put("/recovery", RecoveryPassword);
 router.put("/validator", ValidatorTokenAcount);
