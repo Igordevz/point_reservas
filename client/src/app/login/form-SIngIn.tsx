@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
 import { useToast } from "@/components/ui/use-toast";
 import { instance } from "../api/api";
@@ -53,7 +53,10 @@ export default function LoginForm() {
       toast({
         title: "Login Realizado Com Sucesso",
       });
-      Cookies.set('@auth-id', fecthApi?.data.access_jwt);
+      const expirationTimeInDays = 7;
+      const expires = new Date();
+      expires.setDate(expires.getDate() + expirationTimeInDays);
+      Cookies.set("@auth-id", fecthApi?.data.access_jwt, { expires });
       router.push("/");
     } catch (error: any) {
       toast({

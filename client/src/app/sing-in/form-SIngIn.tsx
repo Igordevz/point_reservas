@@ -9,6 +9,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { instance } from "../api/api";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import  Cookies  from "js-cookie";
 import BarLoader from "react-spinners/BarLoader";
 export default function FormSingIn() {
   const [loading, setLoading] = useState(false);
@@ -58,10 +59,10 @@ export default function FormSingIn() {
         title: "Cadastrado com sucesso",
         description: "Seu cadastro em nosso sistema foi realizado com sucesso",
       });
-      const dataSave = localStorage.setItem(
-        "@auth-id",
-        JSON.stringify(fecthApi?.data.access_jwt)
-      );
+      const expirationTimeInDays = 7;
+      const expires = new Date();
+      expires.setDate(expires.getDate() + expirationTimeInDays);
+      Cookies.set("@auth-id", fecthApi?.data.access_jwt, { expires });
       router.push("/sing-in/two-factors");
     } catch (error: any) {
       toast({

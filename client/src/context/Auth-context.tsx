@@ -32,6 +32,8 @@ export default function AuthProvider({ children }: Ichildren) {
 
         setUser(req);
       } catch (error) {
+        Cookies.remove('@auth-id');
+        location.reload();
         return toast({
           title: "Seu Login foi expirado.",
           description: "Realize seu login novamente",
@@ -39,7 +41,7 @@ export default function AuthProvider({ children }: Ichildren) {
       }
     }
 
-    if (token) {
+    if(token) {
       LoginUser();
       setIsLogin(true);
       if (pathName === "/login" || pathName == "/sing-in") {
