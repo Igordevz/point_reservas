@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { UserModel } from "../../../models/user";
 import bcrypt from "bcrypt"
 import { transport } from "../../../config/sendmailer";
+import { uuid } from 'uuidv4';
+
 export default async function CreateUser(req: Request, res:Response) {
     
 
@@ -28,6 +30,7 @@ export default async function CreateUser(req: Request, res:Response) {
     const dataUser = new UserModel({
         name,
         email,
+        access_jwt: uuid(),
         password: passwordHash, 
         verification_twofactores: false,
         codding_twofactores: numberAleatory,

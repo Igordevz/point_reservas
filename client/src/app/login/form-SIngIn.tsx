@@ -53,7 +53,7 @@ export default function LoginForm() {
       });
       const dataSave = localStorage.setItem(
         "@auth-id",
-        JSON.stringify(fecthApi?.data)
+        JSON.stringify(fecthApi?.data.access_jwt)
       );
       router.push("/");
     } catch (error: any) {

@@ -60,7 +60,7 @@ export default function FormSingIn() {
       });
       const dataSave = localStorage.setItem(
         "@auth-id",
-        JSON.stringify(fecthApi?.data)
+        JSON.stringify(fecthApi?.data.access_jwt)
       );
       router.push("/sing-in/two-factors");
     } catch (error: any) {
