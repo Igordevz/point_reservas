@@ -111,7 +111,7 @@ export default function FormSingIn() {
       </div>
       <Button type="submit" className="w-full flex flex-row gap-4">
         {loading ? (
-          <BarLoader width={"90%"} height={2} color="black" />
+          <BarLoader width={"90%"} height={2} color="yellow" />
         ) : (
           "Realizar cadastro"
         )}

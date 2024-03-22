@@ -61,7 +61,7 @@ export default function Twofactors() {
             <InputOTPSlot index={4} />
           </InputOTPGroup>
         </InputOTP>{" "}
-        <Button onClick={ValidatorToken}>{loading ? <BarLoader  width={"90%"} height={2} color="black"/>  : "Confirmar Token"}</Button>
+        <Button onClick={ValidatorToken}>{loading ? <BarLoader  width={"90%"} height={2} color="yellow"/>  : "Confirmar Token"}</Button>
         </div>
       </div>
 
