@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation"; // Importe corretamente o useRouter
+import { useRouter } from "next/navigation";
 import { ReactNode, createContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Loading from "./loading";
@@ -28,7 +28,7 @@ export default function AuthProvider({ children }: Ichildren) {
       const token = modifieldData;
       try {
         const req: any = await instance.post("/get-user", {
-       
+          token
         });
 
         setUser(req);
@@ -41,6 +41,7 @@ export default function AuthProvider({ children }: Ichildren) {
     }
 
     if (data) {
+      LoginUser();
       setIsLogin(true);
       if (pathName === "/login" || pathName == "/sing-in") {
         router.push("/");
