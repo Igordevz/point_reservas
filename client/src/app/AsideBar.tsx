@@ -16,8 +16,9 @@ import {
   TextSearchIcon,
 } from "lucide-react";
 import { ModeToggle } from "./ThemeMode";
+import { Button } from "@/components/ui/button";
 export default function AsideBar() {
-  const { user }: any = useContext(AuthContextApi);
+  const { user, Logout }: any = useContext(AuthContextApi);
   const namePart: any = user?.name.split(" "); // Dividir a string em partes usando um espaço como delimitador
   const twoName = namePart?.slice(0, 2).join(" ");
   const [active, setActive] = useState("home");
@@ -27,10 +28,8 @@ export default function AsideBar() {
       <div>
         <div className="flex flex-row m-4 items-center gap-4">
           <Avatar>
-            <AvatarFallback>{user?.name[0]}</AvatarFallback> 
-
+            <AvatarFallback>{user?.name[0]}</AvatarFallback>
           </Avatar>
-
           <div>
             <span className="text-[14px]">{twoName}</span>
             <br />
@@ -38,8 +37,7 @@ export default function AsideBar() {
               {user?.email}
             </span>
           </div>
-         <ModeToggle/> 
-
+          <ModeToggle />
         </div>
         <div className="w-full h-[1px] bg-muted-foreground"></div>
         <div className="m-4 flex flex-col">
@@ -85,17 +83,18 @@ export default function AsideBar() {
           </a>
           <div
             className={`flex flex-row items-center gap-4 cursor-pointer  p-3 transition-all`}
-          >
-          </div>
+          ></div>
         </div>
       </div>
 
       <div className="m-4">
-        <div
-          className={`flex flex-row items-center gap-4 cursor-pointer  p-3 transition-all text-red-500`}
+        <Button
+          onClick={Logout}
+          variant={"ghost"}
+          className={`flex flex-row items-center   gap-4 cursor-pointer hover:bg-transparent transition-all text-red-500`}
         >
           <LogOut /> <span>Sair</span>
-        </div>
+        </Button>
       </div>
     </aside>
   );
