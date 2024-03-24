@@ -18,18 +18,15 @@ import {
 import { ModeToggle } from "./ThemeMode";
 export default function AsideBar() {
   const { user }: any = useContext(AuthContextApi);
-  console.log(user);
   const namePart: any = user?.name.split(" "); // Dividir a string em partes usando um espaço como delimitador
   const twoName = namePart?.slice(0, 2).join(" ");
   const [active, setActive] = useState("home");
-  const [mode, setMode] = useState(false);
 
   return (
     <aside className="fixed w-[350px] bg-primary-foreground  h-full flex flex-col justify-between ">
       <div>
         <div className="flex flex-row m-4 items-center gap-4">
           <Avatar>
-            {/* <AvatarImage src="https://github.com/igordevz.png" alt="@shadcn" /> */}
             <AvatarFallback>{user?.name[0]}</AvatarFallback> 
 
           </Avatar>
