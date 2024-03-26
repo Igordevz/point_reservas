@@ -9,6 +9,7 @@ import ValidatorTokenAcount from "../controllers/use-cases/users/validator-token
 import CreateNewPoint from "../controllers/use-cases/points/create-new-point";
 import RemovePoint from "../controllers/use-cases/points/remove-point";
 import GetInformationUser from "../controllers/use-cases/users/get-information-user";
+import GetPoints from "../controllers/use-cases/points/get-points";
 export const router = Router();
 router.get("/", (req, res) => {
   res.status(200).send("🔥http server running");
@@ -19,10 +20,13 @@ router.delete("/remove_point", RemovePoint)
 
 // router.put("/report", ReportMenu) -> pode usar..
 
+router.get("/point", GetPoints)
+
 router.get("/tmp/points/:filename", (req, res) => {
   const filename = req.params.filename;
   res.sendFile(path.join(__dirname, "..", "..", "tmp", "points", filename));
 });
+
 
 //user
 router.post("/create_user", CreateUser);
