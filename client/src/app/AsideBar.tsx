@@ -24,7 +24,7 @@ export default function AsideBar() {
   const [active, setActive] = useState("home");
 
   return (
-    <aside className="fixed w-[350px] bg-primary-foreground  h-full flex flex-col justify-between ">
+    <aside className="fixed w-[23%] hidden bg-primary-foreground transition-all h-full md:flex flex-col justify-between overflow-hidden hover:w-[30%] ">
       <div>
         <div className="flex flex-row m-4 items-center gap-4">
           <Avatar>
@@ -34,10 +34,11 @@ export default function AsideBar() {
             <span className="text-[14px]">{twoName}</span>
             <br />
             <span className="text-[14px] text-muted-foreground">
-              {user?.email}
-            </span>
+  <p className="break-words text-ellipsis ">
+    {user?.email}
+  </p>
+</span>
           </div>
-          <ModeToggle />
         </div>
         <div className="w-full h-[1px] bg-muted-foreground"></div>
         <div className="m-4 flex flex-col">
