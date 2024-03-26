@@ -14,7 +14,7 @@ export default async function AcceptInvite(req: Request, res: Response) {
     const getFile = login?.notification.findIndex(
       (index: any) => index.id_user == id
     );
-    if (!Array.isArray(login.notification)) {
+    if (!Array.isArray(login?.notification)) {
       login.notification = [];
     }
     const updateUser = await UserModel.updateOne(
@@ -30,7 +30,7 @@ export default async function AcceptInvite(req: Request, res: Response) {
       }
     );
     if (getFile !== -1) {
-      login.notification.splice(getFile, 1);
+      login?.notification.splice(getFile, 1);
       await login.save();
     }
     const user = await UserModel.updateOne(
@@ -39,14 +39,14 @@ export default async function AcceptInvite(req: Request, res: Response) {
         $set: {
           friends: [
             {
-              user: login._id,
+              user: login?._id,
             },
           ],
         },
       }
     );
 
-    if (updateUser.modifiedCount >= 1) {
+    if (updateUser?.modifiedCount >= 1) {
       return res
         .status(200)
         .json({ msg: "Convite de amizade aceito com sucesso." });

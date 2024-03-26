@@ -17,9 +17,34 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "../ui/button";
+import { instance } from "@/app/api/api";
+import { toast } from "../ui/use-toast";
 export default function ContentMain() {
   const { user }: any = useContext(AuthContextApi);
+
   console.log(user);
+  async function AcceptUser(data:any){
+    
+   try {
+    await instance.put("/accept", {
+      type: "invite", 
+      id: data?.id_user,
+      token: user?.access_jwt
+    })
+    toast({
+      title: "Um novo amigo adicionado", 
+      description: `${data.name} é seu novo amigo`
+    })
+   } catch (error:any) {
+    toast({
+      title: "Error na requisição", 
+      description: `${error?.response?.data.msg}`
+    })
+    console.log(error);
+    
+   }
+    console.log(data);
+  }
   return (
     <div className="w-[77%] absolute right-0 ">
       <div className="w-[70%] border-r-[1px] relative">
@@ -42,13 +67,13 @@ export default function ContentMain() {
                           <AlertDescription>
                             <div className="flex flex-row pt-3 gap-3">
                               <Avatar>
-                                <AvatarFallback>I</AvatarFallback>
+                                <AvatarFallback>{file.name[0]}</AvatarFallback>
                               </Avatar>{" "}
                               {file?.description}
                             </div>
                             {file?.type == "invite" ? (
                               <div className="space-x-1 flex flex-row   justify-end">
-                                <Button variant="secondary">Aceitar</Button>
+                                <Button variant="secondary" onClick={() => AcceptUser(file)} >Aceitar</Button>
                                 <Button variant="destructive">Recusar</Button>
                               </div>
                             ) : (

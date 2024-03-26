@@ -34,6 +34,7 @@ export default async function addFriends(req: Request, res: Response) {
             title: "Pedido de amizade",
             description: `Você tem um pedido de amizade pendente de ${user?.name}.`,
             id_user: user?._id,
+            name: user?.name,
             visible: false,
             type: "invite",
           },
