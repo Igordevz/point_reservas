@@ -11,7 +11,9 @@ interface Iuser extends Document {
   access_jwt: string;
   id_points: [];
   chat: []; //insert Ids to clients
-
+  notification: [], 
+  friends: [],
+  
 }
 
 export const CreateNewSchema = new Schema<Iuser>({
@@ -24,6 +26,10 @@ export const CreateNewSchema = new Schema<Iuser>({
   verification_twofactores: { type: Boolean },
   codding_twofactores: { type: Number },
   id_points: { type: [] },
+  notification: { type: [] },
+
+  friends: { type: [] },
+
   chat: { type: [] },
 });
 

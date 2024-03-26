@@ -10,6 +10,8 @@ import CreateNewPoint from "../controllers/use-cases/points/create-new-point";
 import RemovePoint from "../controllers/use-cases/points/remove-point";
 import GetInformationUser from "../controllers/use-cases/users/get-information-user";
 import GetPoints from "../controllers/use-cases/points/get-points";
+import addFriends from "../controllers/use-cases/users/addFriends";
+import AcceptInvit from "../controllers/use-cases/users/Accept-invite";
 export const router = Router();
 router.get("/", (req, res) => {
   res.status(200).send("🔥http server running");
@@ -35,3 +37,5 @@ router.post("/get-user", GetInformationUser)
 router.put("/notification_recovery", NotificationRecoveryPassword);
 router.put("/recovery", RecoveryPassword);
 router.put("/validator", ValidatorTokenAcount);
+router.put("/add", addFriends)
+router.put("/accept", AcceptInvit)
