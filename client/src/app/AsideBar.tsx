@@ -19,7 +19,7 @@ import { ModeToggle } from "./ThemeMode";
 import { Button } from "@/components/ui/button";
 export default function AsideBar() {
   const { user, Logout }: any = useContext(AuthContextApi);
-  const namePart: any = user?.name.split(" "); // Dividir a string em partes usando um espaço como delimitador
+  const namePart: any = user?.name.split(" ");
   const twoName = namePart?.slice(0, 2).join(" ");
   const [active, setActive] = useState("home");
 
@@ -34,10 +34,8 @@ export default function AsideBar() {
             <span className="text-[14px]">{twoName}</span>
             <br />
             <span className="text-[14px] text-muted-foreground">
-  <p className="break-words text-ellipsis ">
-    {user?.email}
-  </p>
-</span>
+              <p className="break-words text-ellipsis ">{user?.email}</p>
+            </span>
           </div>
         </div>
         <div className="w-full h-[1px] bg-muted-foreground"></div>
