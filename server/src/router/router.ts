@@ -12,6 +12,7 @@ import GetInformationUser from "../controllers/use-cases/users/get-information-u
 import GetPoints from "../controllers/use-cases/points/get-points";
 import addFriends from "../controllers/use-cases/users/addFriends";
 import AcceptInvit from "../controllers/use-cases/users/Accept-invite";
+import GetUserId from "../controllers/use-cases/users/get-userID";
 export const router = Router();
 router.get("/", (req, res) => {
   res.status(200).send("🔥http server running");
@@ -29,7 +30,6 @@ router.get("/tmp/points/:filename", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "..", "tmp", "points", filename));
 });
 
-
 //user
 router.post("/create_user", CreateUser);
 router.post("/login", LoginUser);
@@ -39,3 +39,4 @@ router.put("/recovery", RecoveryPassword);
 router.put("/validator", ValidatorTokenAcount);
 router.put("/add", addFriends)
 router.put("/accept", AcceptInvit)
+router.get("/friends/:id", GetUserId)
