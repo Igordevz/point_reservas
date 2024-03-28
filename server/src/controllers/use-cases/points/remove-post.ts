@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserModel } from "../../../models/user";
-import { PointModel } from "../../../models/point";
+import { PointModel } from "../../../models/posts";
 import fs from "fs";
 import path from "path";
 

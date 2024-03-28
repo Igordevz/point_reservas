@@ -1,37 +1,35 @@
 import { Request, Response } from "express";
-import { PointModel } from "../../../models/point";
+import { PointModel } from "../../../models/posts";
 import { UserModel } from "../../../models/user";
 
 export default async function CreateNewPoint(req: Request, res: Response){
 
-  const { address, city, admin_id, name_point, state  } = req.body
+  const { title, token, description  } = req.body
 
   const pictures:any = req.files
 
   const imgs_photo = pictures.map((file_name:any) => file_name?.path)
 
-  const userExist = await UserModel.findOne({_id: admin_id})
+  const userExist = await UserModel.findOne({access_jwt: token})
   if(!userExist?.verification_twofactores){
     return res.status(401).json({msg:"Este usuário não tem autorização."})
   }
 
-  if(!address || !city || !admin_id || !name_point || !state){
+  if(!title ||  !token || !description){
     return res.status(401).json({msg: "Preencha todos os campos!"})
   }
 
   const newModel =  new PointModel({
-    address,
-    state,
-    city, 
-    admin_id,
-    spam: 0, 
-    name_point, 
+    title,
+    description,
+    admin_id: userExist._id,
+    like:[],
     photo_point: [...imgs_photo]
   })
 
   const received_data = await PointModel.create(newModel);
 
-  const updateUser = await UserModel.updateOne({_id: admin_id}, {
+  const updateUser = await UserModel.updateOne({access_jwt: token}, {
      $push: {
       id_points: received_data?._id
      }

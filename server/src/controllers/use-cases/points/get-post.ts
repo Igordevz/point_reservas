@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PointModel } from "../../../models/point";
+import { PointModel } from "../../../models/posts";
 
 export default async function GetPoints(req:Request, res:Response) {
 
