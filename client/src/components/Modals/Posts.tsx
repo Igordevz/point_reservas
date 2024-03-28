@@ -1,5 +1,5 @@
 import { instance } from "@/app/api/api";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import {
   Accordion,
@@ -10,9 +10,10 @@ import {
 import { MoreVertical, UserRoundPlus, Verified } from "lucide-react";
 import { Button } from "../ui/button";
 import { AddFriends } from "../middleware/AddFriend";
+import { AuthContextApi } from "@/context/Auth-context";
 function Post({ post }: any) {
   const [userPropietary, setUserPropietary] = useState<any | undefined>([]);
-
+  const {user}:any = useContext(AuthContextApi)
   useEffect(() => {
     async function fetchUserPropietary() {
       try {
@@ -42,7 +43,7 @@ function Post({ post }: any) {
         </div>
        </div>
        <div>
-          <Button variant="ghost" onClick={() => AddFriends(userPropietary?.email)}>
+          <Button variant="ghost" onClick={() => AddFriends(userPropietary?.email, user.access_jwt)}>
             <UserRoundPlus/>
 
           </Button>
