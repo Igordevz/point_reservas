@@ -38,5 +38,5 @@ export default async function CreateNewPoint(req: Request, res: Response){
   if(updateUser?.modifiedCount <  1){
     return res.status(501).json({msg: "Error no servidor"})
   }
-  return res.status(201).json({msg: "Seu ponto foi cadastrado com sucesso!"});
+  return res.status(201).json({msg: "Seu anúncio foi feito com sucesso!"});
 }
