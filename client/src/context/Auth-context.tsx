@@ -62,12 +62,11 @@ export default function AuthProvider({ children }: Ichildren) {
   function Logout(){
     setIsLoading(true)
     const removeCookies = Cookies.remove("@auth-id")
-    setIsLoading(false)
+    location.reload();
     toast({
       title: "Você foi desconectado",
       description: "Por favor, faça o login novamente. "
     })
-    location.reload();
   }
   return (
     <AuthContextApi.Provider value={{ user, Logout }}>

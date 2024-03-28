@@ -29,6 +29,7 @@ export default function Twofactors() {
         description: "Validação realizada com sucesso"
       })
       router.push("/")
+      location.reload();
     } catch (error:any) {
       toast({
         title: "Sobre a Validação",
