@@ -8,6 +8,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { MoreVertical, UserRoundPlus, Verified } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
 import { Button } from "../ui/button";
 import { AddFriends } from "../middleware/AddFriend";
 import { AuthContextApi } from "@/context/Auth-context";
@@ -49,21 +57,33 @@ function Post({ post }: any) {
           </Button>
        </div>
       </div>
+    <div className="h-full relative">
+    <Carousel>
+        <CarouselNext className="absolute right-0 bottom-0 z-10 bg-purple-900 border-purple-900 text-white"/>
+        <CarouselPrevious className="absolute left-0 bottom-0 z-10 bg-purple-900 border-purple-900 text-white"/>
+        <CarouselContent>
       {post.photo_point.map((img: any, index: any) => (
-        <img
+        
+        <CarouselItem>
+ <img
           key={index}
           src={`http://localhost:8080/${img}`}
           alt="post"
-          className="rounded"
+          className="rounded w-[100%]"
         />
+        </CarouselItem>
+       
       ))}
-      <h1 className="text-[20px] my-2">{post.title}</h1>
+    
+           </CarouselContent>
+      </Carousel>
+      <h1 className="text-[20px] mt-2 font-bold">{post.title}</h1>
       <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
-        <AccordionTrigger className="text-muted-foreground">Descrição</AccordionTrigger>
+        <AccordionTrigger className="text-muted-foreground mt-[-5px]">Descrição</AccordionTrigger>
         <AccordionContent>
         <pre
-        className="max-w-[100%] break-words text-[14px] text-muted-foreground"
+        className="break-words text-[14px] text-muted-foreground"
         style={{ whiteSpace: "pre-line", fontFamily: "sans-serif" }}
       >
         {post.description}
@@ -72,6 +92,7 @@ function Post({ post }: any) {
       </AccordionItem>
     </Accordion>
     
+    </div>
     </div>
   );
 }
@@ -92,12 +113,14 @@ export default function Posts() {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {posts?.map((post: any) => (
         <>
-          <div className="w-full bg-muted-foreground h-[1px] my-1"> </div>
-          <Post key={post.id} post={post} />
-          <div className="w-full bg-muted-foreground h-[1px] my-2"> </div>
+          <div className="w-full border-[1px]"> 
+            <div className="p-4">
+            <Post key={post.id} post={post} />
+            </div>
+          </div>
         </>
       ))}
     </div>

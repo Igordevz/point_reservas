@@ -33,6 +33,7 @@ export default async function AcceptInvite(req: Request, res: Response) {
       login?.notification.splice(getFile, 1);
       await login.save();
     }
+    // resolver problema abaixo
     const user = await UserModel.updateOne(
       { _id: id },
       {

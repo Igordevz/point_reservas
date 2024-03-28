@@ -34,7 +34,7 @@ export default function ContentMain() {
             <StarIcon className="absolute right-28 " size={10}/>
             <Button>Gerar</Button>  
           </div>
-          <div className=" flex-col p-10 w-full" >
+          <div className=" flex-col py-4 w-full" >
               <Posts/>
           </div>
           {/* <FriendsContent /> */}
