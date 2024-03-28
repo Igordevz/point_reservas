@@ -27,7 +27,7 @@ router.get("/posts", GetPoints)
 
 router.get("/tmp/posts/:filename", (req, res) => {
   const filename = req.params.filename;
-  res.sendFile(path.join(__dirname, "..", "..", "tmp", "points", filename));
+  res.sendFile(path.join(__dirname, "..", "..", "tmp", "posts", filename));
 });
 
 //user
