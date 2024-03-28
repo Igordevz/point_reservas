@@ -7,6 +7,7 @@ import NotificationContainers from "./utils/notification-containers";
 import { StarIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import Posts from "./Posts";
+import { ModeToggle } from "@/app/ThemeMode";
 export default function ContentMain() {
   const { user }: any = useContext(AuthContextApi);
 
@@ -14,7 +15,11 @@ export default function ContentMain() {
     <div className="w-[77%] absolute right-0 ">
       <div className="w-[70%] border-r-[1px] relative">
         <div className="p-4 flex flex-row-reverse items-center justify-between border-b-[1px] w-full ">
-          <h2 className="font-extrabold">Home</h2>
+          <div className="flex flex-row items-center gap-4">
+            <h2 className="font-extrabold">Home</h2>
+          <ModeToggle/>
+          </div>
+          
           <NotificationContainers/>
         </div>
         <div className="flex flex-col border-b-[1px]">

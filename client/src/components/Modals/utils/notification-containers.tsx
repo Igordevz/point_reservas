@@ -37,14 +37,14 @@ export default function NotificationContainers() {
   }
   return (
     <NavigationMenu className="w-full">
-    <NavigationMenuList>
-      <NavigationMenuItem>
+    <NavigationMenuList >
+      <NavigationMenuItem >
         <NavigationMenuTrigger>
           <BellIcon
-            className={user?.notification[0] ? "text-primary" : ""}
+            className={user?.notification[0] ? "text-red-400" : ""}
           />
           {user?.notification[0] ? (
-            <div className="mt-[-10px] text-primary">+1</div>
+            <div className="mt-[-10px] text-red-400">+1</div>
           ) : (
             ""
           )}
